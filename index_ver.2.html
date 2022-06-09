@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+
+  <body>
+    <h1>ポケモン図鑑のページ</h1>
+
+    <form action="file:///Users/andoushun/Desktop/programing-training/HTML/index.html" method="post">
+      <p>ポケモンの情報を検索することができます。名前を入力してください。</p>
+      <input type="search" name="search" placeholder="なまえを入力">
+      <input type="submit" name="submit" value="検索">
+    </form>
+ 
+    <div id="pokemonMokuji"></div>
+    <div id="pokemonZukan"></div>
+
+
+    <script>
+      // 目次
+      let table = document.createElement('table');
+      let thead = document.createElement('thead');
+      let tbody = document.createElement('tbody');
+      
+      table.appendChild(thead);
+      table.appendChild(tbody);
+      
+        // HTMLのbodyにテーブルを追加
+      document.getElementById('pokemonMokuji').appendChild(table);
+
+        // テーブル内に情報を入れる
+          //１行目
+      let row_1 = document.createElement('tr');
+      let header_1 = document.createElement('th');
+      header_1.innerHTML = "すがた";
+      let header_2 = document.createElement('th');
+      header_1.innerHTML = "なまえ";
+
+      row_1.appendChild(header_1);
+      row_1.appendChild(header_2);
+      thead.appendChild(row_1);
+
+          // ２行目以降
+      var pokemonMokujiDic = [
+        {name : "フシギダネ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/001.png"},
+        {name : "フシギソウ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/002.png"},
+        {name : "フシギバナ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/003.png"}
+      ];
+      
+      
+      function add(){
+        let row_2 = document.createElement('tr');
+
+        let row_2_data_1 = document.createElement('td');
+        let row_2_data_2 = document.createElement('td');
+
+        for(var j=0; j<pokemonMokujiDic.length; j++){
+          // row2のなかみをからっぽにするしょり
+
+          row_2_data_1.innerHTML = pokemonMokujiDic[j].img;
+          row_2.appendChild(row_2_data_1);
+          row_2_data_2.innerHTML = pokemonMokujiDic[j].name;
+          row_2.appendChild(row_2_data_2);
+
+          tbody.appendChild(row_2);
+        }
+      }
+      
+
+
+      
+
+
+    </script>
+  </body>
+</html>
