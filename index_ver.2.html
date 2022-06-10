@@ -9,13 +9,13 @@
   <body>
     <h1>ポケモン図鑑のページ</h1>
 
-    <form action="file:///Users/andoushun/Desktop/programing-training/HTML/index.html" method="post">
+    <form action="file:///Users/andoushun/Desktop/programing-training/HTML/index_ver.2.html" method="post">
       <p>ポケモンの情報を検索することができます。名前を入力してください。</p>
       <input type="search" name="search" placeholder="なまえを入力">
       <input type="submit" name="submit" value="検索">
     </form>
  
-    <div id="pokemonMokuji"></div>
+    <div id="pokemonMokuii"></div>
     <div id="pokemonZukan"></div>
 
 
@@ -29,50 +29,156 @@
       table.appendChild(tbody);
       
         // HTMLのbodyにテーブルを追加
-      document.getElementById('pokemonMokuji').appendChild(table);
+      document.getElementById('pokemonMokuii').appendChild(table);
 
         // テーブル内に情報を入れる
           //１行目
-      let row_1 = document.createElement('tr');
-      let header_1 = document.createElement('th');
-      header_1.innerHTML = "すがた";
-      let header_2 = document.createElement('th');
-      header_1.innerHTML = "なまえ";
+      let tr_headerRow = document.createElement('tr');
+      let th_image = document.createElement('th');
+      th_image.innerHTML = "すがた";
+      let th_name = document.createElement('th');
+      th_name.innerHTML = "名前";
 
-      row_1.appendChild(header_1);
-      row_1.appendChild(header_2);
-      thead.appendChild(row_1);
+      tr_headerRow.appendChild(th_image);
+      tr_headerRow.appendChild(th_name);
+      thead.appendChild(tr_headerRow);
 
           // ２行目以降
-      var pokemonMokujiDic = [
-        {name : "フシギダネ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/001.png"},
-        {name : "フシギソウ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/002.png"},
-        {name : "フシギバナ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/003.png"}
+      var pokemonDic = [
+        {name : "フシギダネ", id : "#フシギダネ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/001.png", class : "たねポケモン", type : "くさ・どく", height : "0.7m", weight : "6.9kg", chara : "しんりょく", explain : "生まれたときから 背中に 植物の タネが あって 少しずつ 大きく 育つ。"},
+        {name : "フシギソウ", id : "#フシギソウ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/002.png", class : "たねポケモン", type : "くさ・どく", height : "1.0m", weight : "13.0kg", chara : "しんりょく", explain : "つぼみが 背中に ついていて 養分を 吸収していくと 大きな 花が 咲くという。"},
+        {name : "フシギバナ", id : "#フシギバナ", img : "file:///Users/andoushun/Desktop/programing-training/HTML/写真/003.png", class : "たねポケモン", type : "くさ・どく", height : "2.0m", weight : "100.0kg", chara : "しんりょく", explain : "太陽エネルギーを 栄養にして 大きな花が 開く。 日なたに 引き寄せられるように 移動する。"}
       ];
       
       
-      function add(){
-        let row_2 = document.createElement('tr');
+      let tr;
 
-        let row_2_data_1 = document.createElement('td');
-        let row_2_data_2 = document.createElement('td');
+      let td_1;
+      let td_2;
 
-        for(var j=0; j<pokemonMokujiDic.length; j++){
-          // row2のなかみをからっぽにするしょり
+      for(var i=0; i<pokemonDic.length; i++){
+          tr = document.createElement('tr');
+          
+          td_1 = document.createElement('td');
+          data_1 = pokemonDic[i].img;
 
-          row_2_data_1.innerHTML = pokemonMokujiDic[j].img;
-          row_2.appendChild(row_2_data_1);
-          row_2_data_2.innerHTML = pokemonMokujiDic[j].name;
-          row_2.appendChild(row_2_data_2);
+          photo = document.createElement('img');
+          photo.src = data_1;
+          photo.width = 100
+          photo.height = 100
+          photo.alt = pokemonDic[i].name
 
-          tbody.appendChild(row_2);
-        }
-      }
+          tr.appendChild(td_1);
+          td_1.appendChild(photo);
+
+          td_2 = document.createElement('td');
+          tr.appendChild(td_2);
+
+            rink_start = document.createElement('a');
+            rink_start.href = pokemonDic[i].id;
+            td_2.appendChild(rink_start);
+
+            rink_start.innerHTML = pokemonDic[i].name;
+          
+          tbody.appendChild(tr);
+      };
       
 
-
+      // 本文
+        // 表
+      let table_m = document.createElement('table');
+      let thead_m = document.createElement('thead');
+      let tbody_m = document.createElement('tbody');
       
+      table_m.appendChild(thead_m);
+      table_m.appendChild(tbody_m);
+        
+      document.getElementById('pokemonZukan').appendChild(table_m);
 
+          // １行目
+      let tr_headerRow_m = document.createElement('tr');
+        let th_image_m = document.createElement('th');
+        th_image_m.innerHTML = "すがた";
+        let th_status_m = document.createElement('th');
+        th_status_m.innerHTML = "情報";
+
+        tr_headerRow_m.appendChild(th_image_m);
+        tr_headerRow_m.appendChild(th_status_m);
+      thead_m.appendChild(tr_headerRow_m);
+
+          // ２行目以降
+      let tr_m;
+
+        let td_m1;
+        let td_m2;
+
+      for(var i=0; i<pokemonDic.length; i++){
+          tr_m = document.createElement('tr');
+
+            rink_goal = document.createElement('a');
+            rink_goal.name = pokemonDic[i].name;
+            tr_m.appendChild(rink_goal); 
+          
+            td_m1 = document.createElement('td');
+              data_m1 = pokemonDic[i].img;
+
+              photo_m = document.createElement('img');
+              photo_m.src = data_m1;
+              photo_m.width = 300
+              photo_m.height = 300
+              photo_m.alt = pokemonDic[i].name
+
+            tr_m.appendChild(td_m1);
+              td_m1.appendChild(photo_m);
+
+            td_m2 = document.createElement('td');
+            tr_m.appendChild(td_m2);
+
+
+
+              infoHeader = document.createElement('header');
+              td_m2.appendChild(infoHeader);
+
+                h1 = document.createElement('h1');
+                h1.innerHTML = pokemonDic[i].name;
+                infoHeader.appendChild(h1);
+
+
+              ul_m = document.createElement('ul');
+              td_m2.appendChild(ul_m);
+
+                li_m1 = document.createElement('li');
+                li_m1.innerHTML = "分類：";
+                li_m1.innerHTML += pokemonDic[i].class;
+                ul_m.appendChild(li_m1);
+
+                li_m2 = document.createElement('li');
+                li_m2.innerHTML = "タイプ：";
+                li_m2.innerHTML += pokemonDic[i].type;
+                ul_m.appendChild(li_m2);
+
+                li_m3 = document.createElement('li');
+                li_m3.innerHTML = "高さ：";
+                li_m3.innerHTML += pokemonDic[i].height;
+                ul_m.appendChild(li_m3);
+
+                li_m4 = document.createElement('li');
+                li_m4.innerHTML = "重さ：";
+                li_m4.innerHTML += pokemonDic[i].weight;
+                ul_m.appendChild(li_m4);
+
+                li_m5 = document.createElement('li');
+                li_m5.innerHTML = "特性：";
+                li_m5.innerHTML += pokemonDic[i].chara;
+                ul_m.appendChild(li_m5);
+
+                li_m6 = document.createElement('li');
+                li_m6.innerHTML = "説明：";
+                li_m6.innerHTML += pokemonDic[i].explain;
+                ul_m.appendChild(li_m6);
+
+          tbody_m.appendChild(tr_m);
+      };
 
     </script>
   </body>
